@@ -1,22 +1,7 @@
 "use client";
 
-import { md2docxPlugin } from "@m2d/md2docx";
-// import { remarkDocx } from "@m2d/remark-docx";
-import { toDocx } from "mdast2docx";
-import {
-  htmlPlugin,
-  imagePlugin,
-  listPlugin,
-  mathPlugin,
-  tablePlugin,
-} from "mdast2docx/dist/plugins";
+import { md2docx } from "@m2d/md2docx";
 import { useState } from "react";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import remarkParse from "remark-parse";
-import { unified } from "unified";
-import { removePosition } from "unist-util-remove-position";
 import md from "../../../../../sample.md?raw";
 import { CodeDisplay } from "./code-display";
 import styles from "./demo.module.scss";
@@ -26,38 +11,11 @@ import demoCode from "./demo.tsx?raw";
 /** React live demo */
 export function Demo() {
   const [loading, setLoading] = useState(false);
-  const mdastProcessor = unified()
-    .use(remarkParse)
-    .use([remarkGfm, remarkFrontmatter, remarkMath]);
-
-  const mdast = mdastProcessor.parse(md);
-
-  removePosition(mdast);
-
-  // const docxProcessor = unified()
-  //   .use(remarkParse)
-  //   .use(remarkGfm)
-  //   .use(remarkFrontmatter)
-  //   .use(remarkMath)
-  //   .use(remarkDocx);
 
   const downloadDocx = () => {
     setLoading(true);
 
-    toDocx(
-      mdast,
-      {},
-      {
-        plugins: [
-          htmlPlugin(),
-          tablePlugin(),
-          listPlugin(),
-          mathPlugin(),
-          md2docxPlugin(),
-          imagePlugin(),
-        ],
-      },
-    ).then((blob) => {
+    md2docx(md).then((blob) => {
       const url = URL.createObjectURL(blob as Blob);
       const link = document.createElement("a");
       link.href = url;
@@ -72,7 +30,6 @@ export function Demo() {
 
   const code: { filename: string; code: string }[] = [
     { filename: "sample.md", code: md },
-    { filename: "MDAST", code: JSON.stringify(mdast, null, 2) },
     { filename: "demo.tsx", code: demoCode },
   ];
   return (

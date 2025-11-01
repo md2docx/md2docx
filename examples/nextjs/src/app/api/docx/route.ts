@@ -1,19 +1,6 @@
 import { readFileSync } from "node:fs";
-import { emojiPlugin } from "@m2d/emoji";
-import { toDocx } from "mdast2docx";
-import { listPlugin, mathPlugin, tablePlugin } from "mdast2docx/dist/plugins";
+import { md2docx } from "@m2d/md2docx";
 import { NextResponse } from "next/server";
-import remarkFrontmatter from "remark-frontmatter";
-import remarkGfm from "remark-gfm";
-import remarkMath from "remark-math";
-import remarkParse from "remark-parse";
-import { unified } from "unified";
-
-const docxProcessor = unified()
-  .use(remarkParse)
-  .use(remarkGfm)
-  .use(remarkFrontmatter)
-  .use(remarkMath);
 
 /**
  * Generate a docx file from markdown on server side.
@@ -21,13 +8,7 @@ const docxProcessor = unified()
  */
 export const GET = async () => {
   const md = readFileSync("../../sample.md", "utf-8");
-  const mdast = docxProcessor.parse(md);
-  const buffer = await toDocx(
-    mdast,
-    {},
-    { plugins: [tablePlugin(), listPlugin(), mathPlugin(), emojiPlugin()] },
-    "arraybuffer",
-  );
+  const buffer = await md2docx(md, {}, undefined, "arraybuffer");
   return new NextResponse(new Uint8Array(buffer as ArrayBuffer), {
     status: 200,
     headers: {

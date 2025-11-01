@@ -164,40 +164,70 @@ importers:
       '@m2d/core':
         specifier: ^1.7.0
         version: 1.7.0(docx@9.5.1)
+      '@m2d/emoji':
+        specifier: ^0.1.3
+        version: 0.1.3(docx@9.5.1)
+      '@m2d/html':
+        specifier: ^1.1.10
+        version: 1.1.10(docx@9.5.1)
+      '@m2d/image':
+        specifier: ^1.4.0
+        version: 1.4.1(docx@9.5.1)(sharp@0.34.4)
+      '@m2d/list':
+        specifier: ^0.0.8
+        version: 0.0.8(docx@9.5.1)
+      '@m2d/math':
+        specifier: ^0.0.6
+        version: 0.0.6(docx@9.5.1)(remark-math@6.0.0)
+      '@m2d/mermaid':
+        specifier: ^1.2.2
+        version: 1.2.2(docx@9.5.1)
+      '@m2d/table':
+        specifier: ^0.1.1
+        version: 0.1.1(docx@9.5.1)
+      docx:
+        specifier: ^9.3.0
+        version: 9.5.1
+      remark-frontmatter:
+        specifier: ^5.0.0
+        version: 5.0.0
+      remark-gfm:
+        specifier: ^4.0.1
+        version: 4.0.1
+      remark-math:
+        specifier: ^6.0.0
+        version: 6.0.0
+      remark-parse:
+        specifier: ^11.0.0
+        version: 11.0.0
+      unified:
+        specifier: ^11.0.5
+        version: 11.0.5
     devDependencies:
       '@repo/typescript-config':
         specifier: workspace:*
         version: link:../packages/config-typescript
+      '@types/mdast':
+        specifier: ^4.0.4
+        version: 4.0.4
       '@types/node':
         specifier: ^24.6.2
         version: 24.6.2
       '@vitest/coverage-v8':
         specifier: ^3.2.4
         version: 3.2.4(vitest@3.2.4(@types/debug@4.1.12)(@types/node@24.6.2)(happy-dom@17.5.6)(jsdom@27.0.0(postcss@8.5.6))(sass@1.93.2)(tsx@4.20.6)(yaml@2.8.1))
-      docx:
-        specifier: ^9.5.1
-        version: 9.5.1
       esbuild-plugin-rdi:
         specifier: ^0.0.0
         version: 0.0.0
       jsdom:
         specifier: ^27.0.0
         version: 27.0.0(postcss@8.5.6)
-      remark-gfm:
-        specifier: ^4.0.1
-        version: 4.0.1
-      remark-parse:
-        specifier: ^11.0.0
-        version: 11.0.0
       tsup:
         specifier: ^8.5.0
         version: 8.5.0(postcss@8.5.6)(tsx@4.20.6)(typescript@5.9.3)(yaml@2.8.1)
       typescript:
         specifier: ^5.9.3
         version: 5.9.3
-      unified:
-        specifier: ^11.0.5
-        version: 11.0.5
       vite-tsconfig-paths:
         specifier: ^5.1.4
         version: 5.1.4(typescript@5.9.3)(vite@7.1.9(@types/node@24.6.2)(sass@1.93.2)(tsx@4.20.6)(yaml@2.8.1))

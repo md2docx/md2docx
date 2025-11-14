@@ -53,7 +53,7 @@ importers:
         version: link:../../packages/shared
       mdast2docx:
         specifier: 1.6.1
-        version: 1.6.1(remark-math@6.0.0)
+        version: 1.6.1(remark-math@6.0.0)(sharp@0.34.5)
       next:
         specifier: ^15.5.6
         version: 15.5.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(sass@1.93.3)
@@ -262,7 +262,7 @@ importers:
         version: 0.3.1
       mdast2docx:
         specifier: 1.6.1
-        version: 1.6.1(remark-math@6.0.0)
+        version: 1.6.1(remark-math@6.0.0)(sharp@0.34.5)
       nextjs-darkmode:
         specifier: ^1.0.10
         version: 1.0.10(@types/react@19.2.2)(react@19.2.0)
@@ -629,8 +629,8 @@ packages:
   '@emnapi/runtime@1.6.0':
     resolution: {integrity: sha512-obtUmAHTMjll499P+D9A3axeJFlhdjOWdKUNs/U6QIGT7V5RjcUW1xToAzjvmgTSQhDbYn/NwfTRoJcQ2rNBxA==}
 
-  '@emnapi/runtime@1.7.0':
-    resolution: {integrity: sha512-oAYoQnCYaQZKVS53Fq23ceWMRxq5EhQsE0x0RdQ55jT7wagMu5k+fS39v1fiSLrtrLQlXwVINenqhLMtTrV/1Q==}
+  '@emnapi/runtime@1.7.1':
+    resolution: {integrity: sha512-PVtJr5CmLwYAU9PZDMITZoR5iAOShYREoR45EyyLrbntV50mdePTgUn4AmOw90Ifcj+x2kRjdzr1HP3RrNiHGA==}
 
   '@esbuild/aix-ppc64@0.25.11':
     resolution: {integrity: sha512-Xt1dOL13m8u0WE8iplx9Ibbm+hFAO0GsU2P34UNoDGvZYkY8ifSiy6Zuc1lYxfG7svWE2fzqCUmFp5HCn51gJg==}
@@ -4330,7 +4330,7 @@ snapshots:
       tslib: 2.8.1
     optional: true
 
-  '@emnapi/runtime@1.7.0':
+  '@emnapi/runtime@1.7.1':
     dependencies:
       tslib: 2.8.1
     optional: true
@@ -4668,7 +4668,7 @@ snapshots:
 
   '@img/sharp-wasm32@0.34.5':
     dependencies:
-      '@emnapi/runtime': 1.7.0
+      '@emnapi/runtime': 1.7.1
     optional: true
 
   '@img/sharp-win32-arm64@0.34.4':
@@ -6487,7 +6487,7 @@ snapshots:
     dependencies:
       '@types/mdast': 4.0.4
 
-  mdast2docx@1.6.1(remark-math@6.0.0):
+  mdast2docx@1.6.1(remark-math@6.0.0)(sharp@0.34.5):
     dependencies:
       '@m2d/core': 1.7.1(docx@9.5.1)
       '@m2d/emoji': 0.1.3(docx@9.5.1)

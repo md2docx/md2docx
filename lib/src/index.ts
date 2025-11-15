@@ -1,6 +1,6 @@
 import type { IDocxProps, ISectionProps } from "@m2d/core";
 import { type Mdast2DocxPluginProps, remarkDocx } from "@m2d/remark-docx";
-import type { OutputByType, OutputType } from "docx";
+import type { OutputType } from "docx";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";

@@ -3,7 +3,7 @@
   "author": "Mayank Kumar Chaudhari (https://mayank-chaudhari.vercel.app)",
   "private": false,
   "version": "0.0.1",
-  "description": "The simplest way to convert Markdown to DOCX. Batteries-included wrapper around all @m2d/* packages and Unified. One import, one call — full Markdown → Word conversion with HTML, images, math, tables, and more.",
+  "description": "The simplest way to convert Markdown to DOCX. Batteries-included wrapper around all @m2d/remark-docx package and Unified. One import, one call — full Markdown → Word conversion with HTML, images, math, tables, and more.",
   "license": "MPL-2.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

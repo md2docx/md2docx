@@ -1,20 +1,20 @@
 import { describe, expect, it, vi } from "vitest";
 import { md2docx } from "../src/index";
 
-// Mock the @m2d/core module
-vi.mock("@m2d/core", () => ({
-  toDocx: vi.fn().mockResolvedValue(new Blob()),
-  DEFAULT_SECTION_PROPS: { plugins: [] },
+// Mock unified processor
+vi.mock("unified", () => ({
+  unified: vi.fn(() => ({
+    use: vi.fn().mockReturnThis(),
+    process: vi.fn().mockResolvedValue({ result: new Blob() }),
+  })),
 }));
 
-// Mock all plugin modules
-vi.mock("@m2d/emoji", () => ({ emojiPlugin: vi.fn() }));
-vi.mock("@m2d/html", () => ({ htmlPlugin: vi.fn() }));
-vi.mock("@m2d/image", () => ({ imagePlugin: vi.fn() }));
-vi.mock("@m2d/list", () => ({ listPlugin: vi.fn() }));
-vi.mock("@m2d/math", () => ({ mathPlugin: vi.fn() }));
-vi.mock("@m2d/mermaid", () => ({ mermaidPlugin: vi.fn() }));
-vi.mock("@m2d/table", () => ({ tablePlugin: vi.fn() }));
+// Mock remark plugins
+vi.mock("remark-parse", () => ({ default: vi.fn() }));
+vi.mock("remark-gfm", () => ({ default: vi.fn() }));
+vi.mock("remark-math", () => ({ default: vi.fn() }));
+vi.mock("remark-frontmatter", () => ({ default: vi.fn() }));
+vi.mock("@m2d/remark-docx", () => ({ remarkDocx: vi.fn() }));
 
 describe("md2docx", () => {
   it("should convert basic markdown to docx", async () => {
@@ -48,12 +48,11 @@ describe("md2docx", () => {
   it("should accept plugin properties", async () => {
     const pluginProps = {
       mermaid: { mermaidConfig: { theme: "dark" as const } },
-      list: { bulletChar: "*" },
-      table: { borderStyle: "single" },
-      emoji: { shortcodes: true },
-      image: { maxWidth: 500 },
+      list: { defaultBullets: true },
+      table: {},
+      emoji: { emojis: { smile: "😊" } },
+      image: { maxW: 500 },
     };
-    // @ts-expect-error -- ok test
     const result = await md2docx("# Test", {}, undefined, "blob", pluginProps);
     expect(result).toBeInstanceOf(Blob);
   });

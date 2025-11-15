@@ -15,7 +15,8 @@ export function Demo() {
   const downloadDocx = () => {
     setLoading(true);
 
-    md2docx(md).then((blob) => {
+    md2docx(md).then((blob, ...others) => {
+      console.log({ blob, others });
       const url = URL.createObjectURL(blob as Blob);
       const link = document.createElement("a");
       link.href = url;

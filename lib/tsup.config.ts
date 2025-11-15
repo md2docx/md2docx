@@ -1,4 +1,3 @@
-import { rdiPlugin } from "esbuild-plugin-rdi";
 import { defineConfig, type Options } from "tsup";
 
 export default defineConfig(
@@ -11,7 +10,7 @@ export default defineConfig(
       clean: !options.watch,
       bundle: true,
       minify: !options.watch,
-      esbuildPlugins: [rdiPlugin()],
+      esbuildPlugins: [],
       ...options,
     }) as Options,
 );

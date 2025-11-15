@@ -1,57 +1,26 @@
-import { type IDocxProps, type ISectionProps, toDocx } from "@m2d/core";
-import { DEFAULT_SECTION_PROPS } from "@m2d/core/utils";
-import { emojiPlugin } from "@m2d/emoji";
-import { htmlPlugin } from "@m2d/html";
-import { imagePlugin } from "@m2d/image";
-import { listPlugin } from "@m2d/list";
-import { mathPlugin } from "@m2d/math";
-import { mermaidPlugin } from "@m2d/mermaid";
-import { tablePlugin } from "@m2d/table";
-import type { OutputType } from "docx";
-import type { Root } from "mdast";
+import type { IDocxProps, ISectionProps } from "@m2d/core";
+import { type Mdast2DocxPluginProps, remarkDocx } from "@m2d/remark-docx";
+import type { OutputByType, OutputType } from "docx";
 import remarkFrontmatter from "remark-frontmatter";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 
-export const md2docx = (
+export const md2docx = async (
   md: string,
   docxProps: IDocxProps = {},
-  defaultSectionProps: ISectionProps = DEFAULT_SECTION_PROPS,
+  sectionProps?: ISectionProps,
   outputType: OutputType = "blob",
-  pluginProps?: {
-    mermaid?: Parameters<typeof mermaidPlugin>[0];
-    list?: Parameters<typeof listPlugin>[0];
-    table?: Parameters<typeof tablePlugin>[0];
-    emoji?: Parameters<typeof emojiPlugin>[0];
-    image?: Parameters<typeof imagePlugin>[0];
-  },
+  pluginProps?: Mdast2DocxPluginProps,
 ) => {
   const processor = unified().use([
     remarkParse,
     remarkGfm,
     remarkMath,
     remarkFrontmatter,
+    [remarkDocx, outputType, docxProps, sectionProps, pluginProps],
   ]);
-
-  const mdast = processor.parse(md) as Root;
-
-  if (!defaultSectionProps.plugins?.length) {
-    const plugins = [
-      mermaidPlugin(pluginProps?.mermaid),
-      htmlPlugin(),
-      listPlugin(pluginProps?.list),
-      mathPlugin(),
-      tablePlugin(pluginProps?.table),
-      emojiPlugin(pluginProps?.emoji),
-      imagePlugin(pluginProps?.image),
-    ];
-    defaultSectionProps.plugins =
-      typeof window === "undefined"
-        ? plugins.slice(2, -1) // server-side: skip html & image plugins
-        : plugins;
-  }
-
-  return toDocx(mdast, docxProps, defaultSectionProps, outputType);
+  const res = await processor.process(md);
+  return res.result;
 };

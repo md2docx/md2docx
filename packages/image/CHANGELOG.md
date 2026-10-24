@@ -1,5 +1,12 @@
 # @m2d/image
 
+## 1.6.1
+
+### Patch Changes
+
+- Updated dependencies [[`47ac4c7`](https://github.com/md2docx/md2docx/commit/47ac4c770343ff292107d37acc9b491ab0d381a7), [`909cd94`](https://github.com/md2docx/md2docx/commit/909cd944fccf6f7befd3960049d22adf9e8a60c0), [`e4c3545`](https://github.com/md2docx/md2docx/commit/e4c3545460a04ff33fc78c37a64edf4052f1cdd8)]:
+  - @m2d/core@1.9.0
+
 ## 1.6.0
 
 ### Minor Changes
